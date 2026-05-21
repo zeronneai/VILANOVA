@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { MotionConfig } from 'framer-motion'
 import SmoothScroll from './lib/lenis.jsx'
 import Header from './components/Header.jsx'
@@ -16,13 +17,18 @@ import { bonds, insurance } from './data/services.js'
 import { bondsSection, insuranceSection } from './data/copy.js'
 
 export default function App() {
+  const [unlocked, setUnlocked] = useState(false)
+
   return (
     <MotionConfig reducedMotion="user">
-      <SmoothScroll>
+      <SmoothScroll locked={!unlocked}>
         <div className="min-h-screen bg-offwhite">
-          <Header />
+          <Header visible={unlocked} />
           <main>
-            <HeroScrollVideo />
+            <HeroScrollVideo
+              unlocked={unlocked}
+              onUnlock={() => setUnlocked(true)}
+            />
             <ProblemFloodlight />
             <SolutionPillars />
 

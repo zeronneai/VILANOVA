@@ -1,7 +1,9 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import Lenis from 'lenis'
 
-export default function SmoothScroll({ children }) {
+export default function SmoothScroll({ children, locked = false }) {
+  const lenisRef = useRef(null)
+
   useEffect(() => {
     const prefersReduced =
       typeof window !== 'undefined' &&
@@ -15,6 +17,7 @@ export default function SmoothScroll({ children }) {
       wheelMultiplier: 1,
       touchMultiplier: 1.6,
     })
+    lenisRef.current = lenis
 
     let raf
     const tick = (time) => {
@@ -26,8 +29,27 @@ export default function SmoothScroll({ children }) {
     return () => {
       cancelAnimationFrame(raf)
       lenis.destroy()
+      lenisRef.current = null
     }
   }, [])
+
+  // Lock / unlock scroll
+  useEffect(() => {
+    const lenis = lenisRef.current
+    if (locked) {
+      lenis?.stop()
+      document.body.style.overflow = 'hidden'
+      document.documentElement.style.overflow = 'hidden'
+    } else {
+      lenis?.start()
+      document.body.style.overflow = ''
+      document.documentElement.style.overflow = ''
+    }
+    return () => {
+      document.body.style.overflow = ''
+      document.documentElement.style.overflow = ''
+    }
+  }, [locked])
 
   return children
 }

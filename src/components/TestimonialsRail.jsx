@@ -34,7 +34,7 @@ function TestimonialCard({ item, index }) {
 
 export default function TestimonialsRail() {
   return (
-    <section className="bg-bone py-28 lg:py-36">
+    <section className="bg-bone py-20 sm:py-24 lg:py-32">
       <div className="container-px">
         <div className="mb-14">
           <HairlineRule num={testimonials.num} label={testimonials.eyebrow} />

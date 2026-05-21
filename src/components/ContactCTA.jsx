@@ -42,7 +42,7 @@ function OfficeCard({ office }) {
 
 export default function ContactCTA() {
   return (
-    <section id="contacto" className="py-28 lg:py-36 bg-offwhite">
+    <section id="contacto" className="py-20 sm:py-24 lg:py-32 bg-offwhite">
       <div className="container-px">
         <div className="mb-14">
           <HairlineRule num={contact.num} label={contact.eyebrow} />

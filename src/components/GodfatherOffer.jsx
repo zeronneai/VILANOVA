@@ -10,7 +10,7 @@ export default function GodfatherOffer() {
   return (
     <section
       id="godfather"
-      className="relative bg-graphite-700 text-offwhite py-28 lg:py-40 overflow-hidden"
+      className="relative bg-graphite-700 text-offwhite py-20 sm:py-24 lg:py-36 overflow-hidden"
     >
       {/* Glow */}
       <div className="absolute inset-0 bg-ice-glow opacity-40 pointer-events-none" />

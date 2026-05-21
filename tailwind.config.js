@@ -49,10 +49,10 @@ export default {
       },
       fontSize: {
         // Escala display fluida tipo Apple/Stripe
-        'd-1': ['clamp(3rem, 7.5vw, 7.5rem)', { lineHeight: '0.95', letterSpacing: '-0.035em' }],
-        'd-2': ['clamp(2.5rem, 5.5vw, 5.25rem)', { lineHeight: '1', letterSpacing: '-0.03em' }],
-        'd-3': ['clamp(2rem, 4vw, 3.5rem)',     { lineHeight: '1.04', letterSpacing: '-0.025em' }],
-        'd-4': ['clamp(1.5rem, 2.6vw, 2.25rem)',{ lineHeight: '1.1', letterSpacing: '-0.02em' }],
+        'd-1': ['clamp(2.5rem, 7vw, 7.5rem)',  { lineHeight: '0.98', letterSpacing: '-0.035em' }],
+        'd-2': ['clamp(2rem, 5.5vw, 5.25rem)', { lineHeight: '1', letterSpacing: '-0.03em' }],
+        'd-3': ['clamp(1.75rem, 4vw, 3.5rem)', { lineHeight: '1.04', letterSpacing: '-0.025em' }],
+        'd-4': ['clamp(1.375rem, 2.6vw, 2.25rem)', { lineHeight: '1.1', letterSpacing: '-0.02em' }],
       },
       letterSpacing: {
         widest2: '0.18em',

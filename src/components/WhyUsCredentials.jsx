@@ -7,17 +7,13 @@ import Counter from './ui/Counter.jsx'
 import { WordsReveal } from './ui/Reveal.jsx'
 import { stagger, fadeUp, viewportOnce } from '../lib/motion.js'
 
-function StatItem({ stat, index, total }) {
+function StatItem({ stat }) {
   return (
     <motion.div
       variants={fadeUp}
-      className={`relative px-6 lg:px-8 py-8 lg:py-10 ${
-        index % 3 !== 0 ? 'lg:border-l border-hairline-d' : ''
-      } ${
-        index >= 3 ? 'border-t border-hairline-d' : ''
-      }`}
+      className="relative px-5 sm:px-6 lg:px-8 py-7 lg:py-10 bg-graphite-700"
     >
-      <div className="font-display text-[clamp(2.5rem,4.5vw,4rem)] leading-none mb-4 flex items-baseline text-metal-cool">
+      <div className="font-display text-[clamp(2rem,4.5vw,4rem)] leading-none mb-3 sm:mb-4 flex items-baseline text-metal-cool">
         {stat.prefix && (
           <span className="mr-1 text-[0.5em] text-platinum-200">
             {stat.prefix}
@@ -26,10 +22,10 @@ function StatItem({ stat, index, total }) {
         <Counter value={stat.value} />
         {stat.suffix && <span className="ml-1 text-[0.5em]">{stat.suffix}</span>}
       </div>
-      <div className="text-offwhite text-[13px] font-medium uppercase tracking-widest2 mb-1.5">
+      <div className="text-offwhite text-[12px] sm:text-[13px] font-medium uppercase tracking-widest2 mb-1.5">
         {stat.label}
       </div>
-      <div className="text-platinum-200/50 text-[11px] font-mono">
+      <div className="text-platinum-200/50 text-[10px] sm:text-[11px] font-mono leading-tight">
         {stat.sub}
       </div>
     </motion.div>
@@ -40,7 +36,7 @@ export default function WhyUsCredentials() {
   const loop = [...partners, ...partners]
 
   return (
-    <section className="relative bg-graphite-radial text-offwhite py-28 lg:py-36 overflow-hidden">
+    <section className="relative bg-graphite-radial text-offwhite py-20 sm:py-24 lg:py-32 overflow-hidden">
       <div className="absolute inset-0 bg-noise opacity-20 mix-blend-overlay pointer-events-none" />
 
       <div className="container-px relative">
@@ -87,11 +83,11 @@ export default function WhyUsCredentials() {
           initial="hidden"
           whileInView="show"
           viewport={viewportOnce}
-          variants={stagger(0.1)}
-          className="border-t border-hairline-d grid grid-cols-2 lg:grid-cols-3"
+          variants={stagger(0.08)}
+          className="grid grid-cols-2 lg:grid-cols-3 gap-px bg-hairline-d border border-hairline-d"
         >
-          {whyUs.stats.map((s, i) => (
-            <StatItem key={s.label} stat={s} index={i} total={whyUs.stats.length} />
+          {whyUs.stats.map((s) => (
+            <StatItem key={s.label} stat={s} />
           ))}
         </motion.div>
 

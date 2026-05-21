@@ -27,7 +27,7 @@ function PillarCard({ pillar, index }) {
 
 export default function SolutionPillars() {
   return (
-    <section id="solucion" className="bg-offwhite py-28 lg:py-36">
+    <section id="solucion" className="bg-offwhite py-20 sm:py-24 lg:py-32">
       <div className="container-px">
         <div className="mb-14">
           <HairlineRule num={solution.num} label={solution.eyebrow} />

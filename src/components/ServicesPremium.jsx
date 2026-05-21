@@ -70,7 +70,7 @@ export default function ServicesPremium({
   return (
     <section
       id={id}
-      className={`py-28 lg:py-36 ${isLight ? 'bg-offwhite' : 'bg-bone'}`}
+      className={`py-20 sm:py-24 lg:py-32 ${isLight ? 'bg-offwhite' : 'bg-bone'}`}
     >
       <div className="container-px">
         <div className="mb-14">

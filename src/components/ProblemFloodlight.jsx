@@ -9,7 +9,7 @@ export default function ProblemFloodlight() {
   return (
     <section
       id="problema"
-      className="relative bg-graphite-700 text-offwhite py-28 lg:py-36 overflow-hidden"
+      className="relative bg-graphite-700 text-offwhite py-20 sm:py-24 lg:py-32 overflow-hidden"
     >
       {/* Floodlight effect */}
       <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[900px] h-[900px] bg-ice-glow opacity-30 pointer-events-none" />

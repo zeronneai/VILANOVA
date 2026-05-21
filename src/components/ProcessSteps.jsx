@@ -33,7 +33,7 @@ export default function ProcessSteps() {
   const lineProgress = useTransform(scrollYProgress, [0, 1], ['0%', '100%'])
 
   return (
-    <section id="proceso" ref={ref} className="bg-offwhite py-28 lg:py-36">
+    <section id="proceso" ref={ref} className="bg-offwhite py-20 sm:py-24 lg:py-32">
       <div className="container-px">
         <div className="mb-14">
           <HairlineRule num={process.num} label={process.eyebrow} />
