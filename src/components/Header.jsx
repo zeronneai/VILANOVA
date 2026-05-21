@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react'
+import { motion, AnimatePresence } from 'motion/react'
 import { Menu, X } from 'lucide-react'
 import Logo from './Logo.jsx'
 
 const NAV = [
-  { label: 'Nosotros', href: '#nosotros' },
-  { label: 'Trayectoria', href: '#trayectoria' },
-  { label: 'Fianzas', href: '#fianzas' },
-  { label: 'Seguros', href: '#seguros' },
-  { label: 'Contacto', href: '#contacto' },
+  { label: 'Nosotros', href: '#nosotros', num: '03' },
+  { label: 'Trayectoria', href: '#trayectoria', num: '04' },
+  { label: 'Fianzas', href: '#fianzas', num: '05' },
+  { label: 'Seguros', href: '#seguros', num: '06' },
+  { label: 'Contacto', href: '#contacto', num: '09' },
 ]
 
 export default function Header() {
@@ -22,10 +23,13 @@ export default function Header() {
   }, [])
 
   return (
-    <header
+    <motion.header
+      initial={{ y: -20, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
       className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${
         scrolled
-          ? 'bg-navy-600/95 backdrop-blur-md border-b border-navy-500/50 shadow-soft'
+          ? 'bg-ink-700/85 backdrop-blur-xl border-b border-bone-50/10'
           : 'bg-transparent'
       }`}
     >
@@ -34,23 +38,26 @@ export default function Header() {
           <Logo variant="light" />
         </a>
 
-        <nav className="hidden lg:flex items-center gap-9">
+        <nav className="hidden lg:flex items-center gap-10">
           {NAV.map((item) => (
             <a
               key={item.href}
               href={item.href}
-              className="text-sm font-medium text-cream-50/85 hover:text-gold-400 transition-colors"
+              className="group flex items-baseline gap-1.5 text-sm font-medium text-bone-50/80 hover:text-bronze-300 transition-colors"
             >
-              {item.label}
+              <span className="font-mono text-[10px] text-bone-50/40 group-hover:text-bronze-400 transition-colors">
+                {item.num}
+              </span>
+              <span>{item.label}</span>
             </a>
           ))}
-          <a href="#contacto" className="btn-primary !py-2.5 !px-5">
+          <a href="#contacto" className="btn-primary !py-2.5 !px-5 !text-xs">
             Asesoría sin costo
           </a>
         </nav>
 
         <button
-          className="lg:hidden text-cream-50 p-2"
+          className="lg:hidden text-bone-50 p-2"
           onClick={() => setOpen(!open)}
           aria-label="Abrir menú"
         >
@@ -58,30 +65,43 @@ export default function Header() {
         </button>
       </div>
 
-      {/* Mobile */}
-      {open && (
-        <div className="lg:hidden bg-navy-600 border-t border-navy-500/50">
-          <div className="container-px py-6 flex flex-col gap-5">
-            {NAV.map((item) => (
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            className="lg:hidden bg-ink-700 border-t border-bone-50/10 overflow-hidden"
+          >
+            <div className="container-px py-6 flex flex-col gap-5">
+              {NAV.map((item, i) => (
+                <motion.a
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setOpen(false)}
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.1 + i * 0.05 }}
+                  className="flex items-baseline gap-3 text-bone-50/90 text-lg"
+                >
+                  <span className="font-mono text-[10px] text-bronze-300">
+                    {item.num}
+                  </span>
+                  {item.label}
+                </motion.a>
+              ))}
               <a
-                key={item.href}
-                href={item.href}
+                href="#contacto"
                 onClick={() => setOpen(false)}
-                className="text-cream-50/90 text-base"
+                className="btn-primary mt-3"
               >
-                {item.label}
+                Asesoría sin costo
               </a>
-            ))}
-            <a
-              href="#contacto"
-              onClick={() => setOpen(false)}
-              className="btn-primary mt-2"
-            >
-              Asesoría sin costo
-            </a>
-          </div>
-        </div>
-      )}
-    </header>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.header>
   )
 }

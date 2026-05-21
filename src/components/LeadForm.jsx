@@ -79,12 +79,12 @@ export default function LeadForm() {
 
   if (submitted) {
     return (
-      <div className="bg-white border border-navy-50 p-10 sm:p-14 text-center shadow-soft">
-        <CheckCircle2 size={48} className="text-gold-500 mx-auto mb-6" />
-        <h3 className="font-serif text-3xl text-navy-600 mb-3">
+      <div className="bg-white border border-ink-50 p-10 sm:p-14 text-center shadow-soft">
+        <CheckCircle2 size={48} className="text-bronze-500 mx-auto mb-6" />
+        <h3 className="font-serif text-3xl text-ink-600 mb-3">
           Hemos recibido tu solicitud.
         </h3>
-        <p className="text-navy-600/75 max-w-md mx-auto mb-8">
+        <p className="text-ink-600/75 max-w-md mx-auto mb-8">
           Un consultor Vilanova te contactará en las próximas horas hábiles. Si
           tu necesidad es urgente, también puedes continuar la conversación por
           WhatsApp.
@@ -95,7 +95,7 @@ export default function LeadForm() {
             setData(initial)
             setSubmitted(false)
           }}
-          className="btn-outline-navy"
+          className="btn-outline-ink"
         >
           Enviar otra solicitud
         </button>
@@ -104,11 +104,11 @@ export default function LeadForm() {
   }
 
   return (
-    <div className="bg-white border border-navy-50 p-7 sm:p-10 lg:p-12 shadow-soft">
-      <h3 className="font-serif text-navy-600 text-3xl mb-2">
+    <div className="bg-white border border-ink-50 p-7 sm:p-10 lg:p-12 shadow-soft">
+      <h3 className="font-serif text-ink-600 text-3xl mb-2">
         Solicita tu asesoría sin costo
       </h3>
-      <p className="text-navy-600/70 mb-9 text-sm">
+      <p className="text-ink-600/70 mb-9 text-sm">
         Completa los datos y un consultor te contactará el mismo día hábil.
       </p>
 
@@ -249,7 +249,7 @@ export default function LeadForm() {
       </div>
 
       <div className="mt-9 flex flex-col sm:flex-row sm:items-center gap-5 justify-between">
-        <p className="text-xs text-navy-600/55 max-w-md">
+        <p className="text-xs text-ink-600/55 max-w-md">
           Al enviar aceptas ser contactado por un consultor Vilanova. No
           compartimos tus datos.
         </p>

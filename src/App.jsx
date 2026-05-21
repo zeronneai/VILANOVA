@@ -1,3 +1,4 @@
+import { MotionConfig } from 'motion/react'
 import Header from './components/Header.jsx'
 import Hero from './components/Hero.jsx'
 import AuthorityCounter from './components/AuthorityCounter.jsx'
@@ -13,40 +14,44 @@ import { bonds, insurance } from './data/services.js'
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-cream-50">
-      <Header />
-      <main>
-        <Hero />
-        <AuthorityCounter />
-        <About />
-        <Timeline />
+    <MotionConfig reducedMotion="user">
+      <div className="min-h-screen bg-bone-50">
+        <Header />
+        <main>
+          <Hero />
+          <AuthorityCounter />
+          <About />
+          <Timeline />
 
-        <ServicesGrid
-          id="fianzas"
-          eyebrow="Servicios — Fianzas"
-          title="Fianzas que respaldan tu"
-          highlight="palabra."
-          intro="Operamos con todas las afianzadoras autorizadas en México. Te asesoramos en el tipo de fianza correcta, gestionamos los formatos ante el beneficiario y aceleramos la emisión para que no detengas tu obra ni tu contrato."
-          items={bonds}
-          variant="light"
-        />
+          <ServicesGrid
+            id="fianzas"
+            number="05"
+            eyebrow="Servicios — Fianzas"
+            title="Fianzas que respaldan tu"
+            highlight="palabra."
+            intro="Operamos con todas las afianzadoras autorizadas en México. Te asesoramos en el tipo de fianza correcta, gestionamos los formatos ante el beneficiario y aceleramos la emisión para que no detengas tu obra ni tu contrato."
+            items={bonds}
+            variant="light"
+          />
 
-        <ServicesGrid
-          id="seguros"
-          eyebrow="Servicios — Seguros"
-          title="Seguros para proteger tu"
-          highlight="patrimonio y tu operación."
-          intro="Diseñamos programas de seguros a la medida de tu industria. Desde la obra civil más compleja hasta la protección integral de tu familia o socios, con las aseguradoras más sólidas del país."
-          items={insurance}
-          variant="cream"
-        />
+          <ServicesGrid
+            id="seguros"
+            number="06"
+            eyebrow="Servicios — Seguros"
+            title="Seguros para proteger tu"
+            highlight="patrimonio y tu operación."
+            intro="Diseñamos programas de seguros a la medida de tu industria. Desde la obra civil más compleja hasta la protección integral de tu familia o socios, con las aseguradoras más sólidas del país."
+            items={insurance}
+            variant="cream"
+          />
 
-        <ValueAdd />
-        <Partners />
-        <Contact />
-      </main>
-      <Footer />
-      <WhatsAppFloat />
-    </div>
+          <ValueAdd />
+          <Partners />
+          <Contact />
+        </main>
+        <Footer />
+        <WhatsAppFloat />
+      </div>
+    </MotionConfig>
   )
 }
