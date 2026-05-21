@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react'
 import { CheckCircle2, AlertCircle, Send } from 'lucide-react'
 import { bonds, insurance } from '../data/services.js'
 import { siteConfig } from '../data/siteConfig.js'
+import ShineButton from './ui/ShineButton.jsx'
 
 const PLAZAS = ['Chihuahua', 'Torreón', 'Xalapa', 'Querétaro']
 const TIPO_CLIENTE = ['Contratista', 'Empresa', 'Persona física']
@@ -79,12 +80,12 @@ export default function LeadForm() {
 
   if (submitted) {
     return (
-      <div className="bg-white border border-ink-50 p-10 sm:p-14 text-center shadow-soft">
-        <CheckCircle2 size={48} className="text-bronze-500 mx-auto mb-6" />
-        <h3 className="font-serif text-3xl text-ink-600 mb-3">
+      <div className="bg-white border border-hairline p-10 sm:p-14 text-center shadow-soft">
+        <CheckCircle2 size={48} className="text-ice-500 mx-auto mb-6" />
+        <h3 className="font-display text-3xl text-graphite-700 font-medium mb-3">
           Hemos recibido tu solicitud.
         </h3>
-        <p className="text-ink-600/75 max-w-md mx-auto mb-8">
+        <p className="text-graphite-500 max-w-md mx-auto mb-8">
           Un consultor Vilanova te contactará en las próximas horas hábiles. Si
           tu necesidad es urgente, también puedes continuar la conversación por
           WhatsApp.
@@ -95,7 +96,7 @@ export default function LeadForm() {
             setData(initial)
             setSubmitted(false)
           }}
-          className="btn-outline-ink"
+          className="btn-outline-dark"
         >
           Enviar otra solicitud
         </button>
@@ -104,11 +105,11 @@ export default function LeadForm() {
   }
 
   return (
-    <div className="bg-white border border-ink-50 p-7 sm:p-10 lg:p-12 shadow-soft">
-      <h3 className="font-serif text-ink-600 text-3xl mb-2">
-        Solicita tu asesoría sin costo
+    <div className="bg-white border border-hairline p-7 sm:p-10 lg:p-12 shadow-soft">
+      <h3 className="font-display text-graphite-700 text-3xl mb-2 font-medium">
+        Reclama tu asesoría sin costo
       </h3>
-      <p className="text-ink-600/70 mb-9 text-sm">
+      <p className="text-graphite-500 mb-9 text-sm">
         Completa los datos y un consultor te contactará el mismo día hábil.
       </p>
 
@@ -241,7 +242,7 @@ export default function LeadForm() {
                 className="input-field resize-none"
                 value={data.mensaje}
                 onChange={update('mensaje')}
-                placeholder="Cuéntanos brevemente sobre tu proyecto, contrato o necesidad."
+                placeholder="Cuéntanos brevemente sobre tu próxima licitación o necesidad."
               />
             }
           />
@@ -249,18 +250,14 @@ export default function LeadForm() {
       </div>
 
       <div className="mt-9 flex flex-col sm:flex-row sm:items-center gap-5 justify-between">
-        <p className="text-xs text-ink-600/55 max-w-md">
+        <p className="text-xs text-graphite-400 max-w-md leading-relaxed">
           Al enviar aceptas ser contactado por un consultor Vilanova. No
           compartimos tus datos.
         </p>
-        <button
-          type="button"
-          onClick={handleSubmit}
-          className="btn-primary group"
-        >
+        <ShineButton as="button" onClick={handleSubmit} variant="ice" size="md" withArrow={false}>
           Enviar solicitud
-          <Send size={16} className="transition-transform group-hover:translate-x-1" />
-        </button>
+          <Send size={15} />
+        </ShineButton>
       </div>
     </div>
   )

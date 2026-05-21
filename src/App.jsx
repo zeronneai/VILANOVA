@@ -1,57 +1,61 @@
-import { MotionConfig } from 'motion/react'
+import { MotionConfig } from 'framer-motion'
+import SmoothScroll from './lib/lenis.jsx'
 import Header from './components/Header.jsx'
-import Hero from './components/Hero.jsx'
-import AuthorityCounter from './components/AuthorityCounter.jsx'
-import About from './components/About.jsx'
-import Timeline from './components/Timeline.jsx'
-import ServicesGrid from './components/ServicesGrid.jsx'
-import ValueAdd from './components/ValueAdd.jsx'
-import Partners from './components/Partners.jsx'
-import Contact from './components/Contact.jsx'
+import HeroScrollVideo from './components/HeroScrollVideo.jsx'
+import ProblemFloodlight from './components/ProblemFloodlight.jsx'
+import SolutionPillars from './components/SolutionPillars.jsx'
+import ServicesPremium from './components/ServicesPremium.jsx'
+import WhyUsCredentials from './components/WhyUsCredentials.jsx'
+import ProcessSteps from './components/ProcessSteps.jsx'
+import TestimonialsRail from './components/TestimonialsRail.jsx'
+import GodfatherOffer from './components/GodfatherOffer.jsx'
+import ContactCTA from './components/ContactCTA.jsx'
 import Footer from './components/Footer.jsx'
 import WhatsAppFloat from './components/WhatsAppFloat.jsx'
 import { bonds, insurance } from './data/services.js'
+import { bondsSection, insuranceSection } from './data/copy.js'
 
 export default function App() {
   return (
     <MotionConfig reducedMotion="user">
-      <div className="min-h-screen bg-bone-50">
-        <Header />
-        <main>
-          <Hero />
-          <AuthorityCounter />
-          <About />
-          <Timeline />
+      <SmoothScroll>
+        <div className="min-h-screen bg-offwhite">
+          <Header />
+          <main>
+            <HeroScrollVideo />
+            <ProblemFloodlight />
+            <SolutionPillars />
 
-          <ServicesGrid
-            id="fianzas"
-            number="05"
-            eyebrow="Servicios — Fianzas"
-            title="Fianzas que respaldan tu"
-            highlight="palabra."
-            intro="Operamos con todas las afianzadoras autorizadas en México. Te asesoramos en el tipo de fianza correcta, gestionamos los formatos ante el beneficiario y aceleramos la emisión para que no detengas tu obra ni tu contrato."
-            items={bonds}
-            variant="light"
-          />
+            <ServicesPremium
+              id="fianzas"
+              num={bondsSection.num}
+              eyebrow={bondsSection.eyebrow}
+              headline={bondsSection.headline}
+              subhead={bondsSection.subhead}
+              items={bonds}
+              variant="light"
+            />
 
-          <ServicesGrid
-            id="seguros"
-            number="06"
-            eyebrow="Servicios — Seguros"
-            title="Seguros para proteger tu"
-            highlight="patrimonio y tu operación."
-            intro="Diseñamos programas de seguros a la medida de tu industria. Desde la obra civil más compleja hasta la protección integral de tu familia o socios, con las aseguradoras más sólidas del país."
-            items={insurance}
-            variant="cream"
-          />
+            <ServicesPremium
+              id="seguros"
+              num={insuranceSection.num}
+              eyebrow={insuranceSection.eyebrow}
+              headline={insuranceSection.headline}
+              subhead={insuranceSection.subhead}
+              items={insurance}
+              variant="cream"
+            />
 
-          <ValueAdd />
-          <Partners />
-          <Contact />
-        </main>
-        <Footer />
-        <WhatsAppFloat />
-      </div>
+            <WhyUsCredentials />
+            <ProcessSteps />
+            <TestimonialsRail />
+            <GodfatherOffer />
+            <ContactCTA />
+          </main>
+          <Footer />
+          <WhatsAppFloat />
+        </div>
+      </SmoothScroll>
     </MotionConfig>
   )
 }

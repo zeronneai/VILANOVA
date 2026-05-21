@@ -6,19 +6,19 @@ import {
   useMotionValueEvent,
   useSpring,
   useReducedMotion,
-} from 'motion/react'
+} from 'framer-motion'
 
-// Número con animación spring al entrar en viewport.
-export default function AnimatedNumber({
+export default function Counter({
   value,
   className = '',
   format = (n) => n.toLocaleString('es-MX'),
+  duration = 2.2,
 }) {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, amount: 0.5 })
   const reduced = useReducedMotion()
   const mv = useMotionValue(0)
-  const spring = useSpring(mv, { stiffness: 50, damping: 18, mass: 1 })
+  const spring = useSpring(mv, { stiffness: 40, damping: 16, mass: 1.1, duration })
   const [display, setDisplay] = useState(reduced ? value : 0)
 
   useEffect(() => {

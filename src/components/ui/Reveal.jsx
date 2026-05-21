@@ -1,29 +1,22 @@
-import { motion } from 'motion/react'
-import { fadeUp, viewportOnce } from '../../lib/motion.js'
+import { motion } from 'framer-motion'
+import { viewportOnce, ease } from '../../lib/motion.js'
 
-// Wrapper estándar para reveals declarativos.
+// Wrapper estándar para reveals al entrar en viewport.
 export default function Reveal({
-  as: Tag = 'div',
+  as = 'div',
   delay = 0,
-  y = 32,
+  y = 28,
   className = '',
   children,
   ...rest
 }) {
-  const MotionTag = motion[Tag] || motion.div
+  const MotionTag = motion[as] || motion.div
   return (
     <MotionTag
-      initial="hidden"
-      whileInView="show"
+      initial={{ opacity: 0, y }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={viewportOnce}
-      variants={{
-        hidden: { opacity: 0, y },
-        show: {
-          opacity: 1,
-          y: 0,
-          transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1], delay },
-        },
-      }}
+      transition={{ duration: 0.9, ease, delay }}
       className={className}
       {...rest}
     >
@@ -32,15 +25,8 @@ export default function Reveal({
   )
 }
 
-// Reveal palabra por palabra para titulares
-export function WordsReveal({
-  text,
-  className = '',
-  italicWords = [],
-  highlightWords = [],
-  staggerWords = 0.07,
-  delay = 0,
-}) {
+// Reveal palabra por palabra (mask + translate)
+export function WordsReveal({ text, className = '', delay = 0, stagger = 0.06 }) {
   const words = text.split(' ')
   return (
     <motion.span
@@ -49,41 +35,32 @@ export function WordsReveal({
       viewport={viewportOnce}
       variants={{
         hidden: {},
-        show: {
-          transition: { staggerChildren: staggerWords, delayChildren: delay },
-        },
+        show: { transition: { staggerChildren: stagger, delayChildren: delay } },
       }}
       className={`inline ${className}`}
       aria-label={text}
     >
-      {words.map((w, i) => {
-        const clean = w.replace(/[.,;:!?]/g, '')
-        const isItalic = italicWords.includes(clean)
-        const isHighlight = highlightWords.includes(clean)
-        return (
-          <span
-            key={i}
-            className="inline-block overflow-hidden align-baseline pb-[0.12em] -mb-[0.12em]"
-            aria-hidden="true"
+      {words.map((w, i) => (
+        <span
+          key={i}
+          className="inline-block overflow-hidden align-baseline pb-[0.14em] -mb-[0.14em]"
+          aria-hidden="true"
+        >
+          <motion.span
+            variants={{
+              hidden: { y: '110%' },
+              show: {
+                y: '0%',
+                transition: { duration: 0.9, ease },
+              },
+            }}
+            className="inline-block"
           >
-            <motion.span
-              variants={{
-                hidden: { y: '110%' },
-                show: {
-                  y: '0%',
-                  transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] },
-                },
-              }}
-              className={`inline-block ${isItalic ? 'italic' : ''} ${
-                isHighlight ? 'text-bronze-300' : ''
-              }`}
-            >
-              {w}
-              {i < words.length - 1 && ' '}
-            </motion.span>
-          </span>
-        )
-      })}
+            {w}
+            {i < words.length - 1 && ' '}
+          </motion.span>
+        </span>
+      ))}
     </motion.span>
   )
 }

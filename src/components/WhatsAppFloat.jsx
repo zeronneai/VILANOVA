@@ -12,7 +12,7 @@ export default function WhatsAppFloat() {
       aria-label="Escríbenos por WhatsApp"
       className="fixed bottom-6 right-6 z-40 group"
     >
-      <span className="absolute inset-0 rounded-full bg-emerald-500/40 animate-ping" />
+      <span className="absolute inset-0 rounded-full bg-emerald-500/30 animate-ping" />
       <span className="relative flex items-center gap-3 bg-emerald-600 hover:bg-emerald-500 text-white pl-4 pr-5 py-3.5 rounded-full shadow-soft transition-all">
         <svg
           width="22"

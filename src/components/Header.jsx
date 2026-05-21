@@ -1,14 +1,15 @@
 import { useEffect, useState } from 'react'
-import { motion, AnimatePresence } from 'motion/react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 import Logo from './Logo.jsx'
+import ShineButton from './ui/ShineButton.jsx'
 
 const NAV = [
-  { label: 'Nosotros', href: '#nosotros', num: '03' },
-  { label: 'Trayectoria', href: '#trayectoria', num: '04' },
-  { label: 'Fianzas', href: '#fianzas', num: '05' },
-  { label: 'Seguros', href: '#seguros', num: '06' },
-  { label: 'Contacto', href: '#contacto', num: '09' },
+  { num: '01', label: 'Problema', href: '#problema' },
+  { num: '02', label: 'Solución', href: '#solucion' },
+  { num: '03', label: 'Servicios', href: '#fianzas' },
+  { num: '06', label: 'Proceso', href: '#proceso' },
+  { num: '09', label: 'Contacto', href: '#contacto' },
 ]
 
 export default function Header() {
@@ -16,7 +17,7 @@ export default function Header() {
   const [open, setOpen] = useState(false)
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24)
+    const onScroll = () => setScrolled(window.scrollY > 60)
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
@@ -24,40 +25,40 @@ export default function Header() {
 
   return (
     <motion.header
-      initial={{ y: -20, opacity: 0 }}
+      initial={{ y: -16, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
+      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
       className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${
         scrolled
-          ? 'bg-ink-700/85 backdrop-blur-xl border-b border-bone-50/10'
+          ? 'bg-graphite-700/70 backdrop-blur-xl border-b border-hairline-d'
           : 'bg-transparent'
       }`}
     >
       <div className="container-px flex items-center justify-between h-20">
-        <a href="#top" aria-label="Inicio">
-          <Logo variant="light" />
+        <a href="#top" aria-label="Inicio" className="z-10">
+          <Logo variant="light" size="md" />
         </a>
 
-        <nav className="hidden lg:flex items-center gap-10">
+        <nav className="hidden lg:flex items-center gap-9">
           {NAV.map((item) => (
             <a
               key={item.href}
               href={item.href}
-              className="group flex items-baseline gap-1.5 text-sm font-medium text-bone-50/80 hover:text-bronze-300 transition-colors"
+              className="group flex items-baseline gap-1.5 text-[13px] font-medium text-platinum-200/80 hover:text-ice-300 transition-colors"
             >
-              <span className="font-mono text-[10px] text-bone-50/40 group-hover:text-bronze-400 transition-colors">
+              <span className="font-mono text-[10px] text-platinum-200/40 group-hover:text-ice-400 transition-colors">
                 {item.num}
               </span>
               <span>{item.label}</span>
             </a>
           ))}
-          <a href="#contacto" className="btn-primary !py-2.5 !px-5 !text-xs">
-            Asesoría sin costo
-          </a>
+          <ShineButton href="#godfather" variant="metal" size="sm" withArrow>
+            Reclama tu sesión
+          </ShineButton>
         </nav>
 
         <button
-          className="lg:hidden text-bone-50 p-2"
+          className="lg:hidden text-offwhite p-2 z-10"
           onClick={() => setOpen(!open)}
           aria-label="Abrir menú"
         >
@@ -72,9 +73,9 @@ export default function Header() {
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="lg:hidden bg-ink-700 border-t border-bone-50/10 overflow-hidden"
+            className="lg:hidden bg-graphite-700 border-t border-hairline-d overflow-hidden"
           >
-            <div className="container-px py-6 flex flex-col gap-5">
+            <div className="container-px py-7 flex flex-col gap-5">
               {NAV.map((item, i) => (
                 <motion.a
                   key={item.href}
@@ -82,22 +83,24 @@ export default function Header() {
                   onClick={() => setOpen(false)}
                   initial={{ opacity: 0, x: -10 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.1 + i * 0.05 }}
-                  className="flex items-baseline gap-3 text-bone-50/90 text-lg"
+                  transition={{ delay: 0.08 + i * 0.05 }}
+                  className="flex items-baseline gap-3 text-offwhite/90 text-lg"
                 >
-                  <span className="font-mono text-[10px] text-bronze-300">
+                  <span className="font-mono text-[10px] text-ice-400">
                     {item.num}
                   </span>
                   {item.label}
                 </motion.a>
               ))}
-              <a
-                href="#contacto"
+              <ShineButton
+                href="#godfather"
                 onClick={() => setOpen(false)}
-                className="btn-primary mt-3"
+                variant="metal"
+                size="md"
+                className="mt-3"
               >
-                Asesoría sin costo
-              </a>
+                Reclama tu sesión
+              </ShineButton>
             </div>
           </motion.div>
         )}
