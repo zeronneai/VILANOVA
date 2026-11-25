@@ -5,9 +5,9 @@
 
 export const assets = {
   logoPng:
-    'https://res.cloudinary.com/dsprn0ew4/image/upload/v1779332269/logo_tezsb6.png',
+    '/media/logo-tezsb6.png',
   heroVideo:
-    'https://res.cloudinary.com/dsprn0ew4/video/upload/v1779334149/kling-3.0_Premium_luxury_logo_reveal_animation_motion_graphics._Start_on_a_clean_pure_whit-0_bsmx5r.mp4',
+    '/media/o-reveal-animation-motion-graphics-start-on-a-clean-pure-whit-0-bsmx5r.mp4',
 }
 
 export const hero = {
